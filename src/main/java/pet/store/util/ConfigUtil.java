@@ -31,5 +31,4 @@ public class ConfigUtil {
     public static String getPetStoreUrl() {
         return getProperty(format("pet.store.%s.url", ENVIRONMENT_LOWER_CASE));
     }
-
 }
