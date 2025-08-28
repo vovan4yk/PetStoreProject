@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // JUnit 5
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // Rest-Assured
+    implementation 'io.rest-assured:rest-assured:5.5.6'
+
+    // Apache Commons Text
+    implementation 'org.apache.commons:commons-text:1.10.0'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    testCompileOnly 'org.projectlombok:lombok:1.18.30'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    // Jackson для JSON
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
+    testImplementation 'org.assertj:assertj-core:4.0.0-M1'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.2'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.register('storeRegression', Test) {
+    description = 'Run sore regression suite'
+    systemProperties(System.getProperties())
+    jvmArgs("-Xmx4g", "-Xmx4g")
+
+    useJUnitPlatform {
+        includeTags "storeRegression"
+    }
+}
