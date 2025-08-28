@@ -28,6 +28,8 @@ import static pet.store.util.spec.PetStoreSpec.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PetStoreOrderTest {
 
+    private static final String ORDER_NOT_FOUND = "Order not found";
+    
     private static List<OrderData> orders = new ArrayList<>(List.of(
             OrderData.builder()
                     .shipDate(parse("2025-08-26T11:57:41.759Z"))
@@ -51,8 +53,6 @@ public class PetStoreOrderTest {
                     .complete(false)
                     .build()
     ));
-
-    private static final String ORDER_NOT_FOUND = "Order not found";
 
     static Stream<OrderData> validOrderProvider() {
         return orders.stream();
